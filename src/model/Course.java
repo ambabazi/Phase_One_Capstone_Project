@@ -37,7 +37,7 @@ public class Course {
     }
 
     public void addStudent(Student student) {
-        student.add(student);
+        students.add(student);
     }
 
     @Override

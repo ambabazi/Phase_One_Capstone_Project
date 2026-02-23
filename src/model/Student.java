@@ -8,13 +8,13 @@ public class Student extends Person{
     private String studentID;
     private double GPA;
 
-//    private Map<Course, Double> courses;
+    private Map<Course, Double> courseGrades;
 
     public Student(String name, String email, String studentID, double GPA) {
         super(name, email);
         this.studentID = studentID;
         this.GPA = 0;
-//        this.courses = new HashMap<>();
+        this.courseGrades = new HashMap<>();
     }
 
     public String getStudentID() {
@@ -29,9 +29,20 @@ public class Student extends Person{
         this.GPA = GPA;
     }
 
-//    public void addCourseGrade(Course course, double grade) {
-//        courseGrades.put(course, grade);
-//    }
+    public void addCourseGrade(Course course, double grade) {
+        courseGrades.put(course, grade);
+        recalculateGPA();
+    }
+
+    private void recalculateGPA() {
+        if (courseGrades.isEmpty()) return;
+
+        double total = 0;
+        for(double grade : courseGrades.values()) {
+            total += grade;
+        }
+        this.GPA = total / courseGrades.size();
+    }
 
     @Override
     public String getRole() {
