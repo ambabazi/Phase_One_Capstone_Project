@@ -42,4 +42,8 @@ public class Student extends Person{
     public String toString() {
         return super.toString() + "ID: " + studentID;
     }
+
+    public void add(Student student) {
+        student.add(student);
+    }
 }
