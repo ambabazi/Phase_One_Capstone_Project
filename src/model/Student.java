@@ -7,26 +7,41 @@ public class Student extends Person{
 
     private String studentID;
     private double GPA;
+    private String department;
 
-    private Map<Course, Double> courseGrades;
+    private Map<Course, Double> courseGrades = new HashMap<>();
 
-    public Student(String name, String email, String studentID, double GPA) {
+    public Student(String name, String email, String studentID, double GPA, String department) {
         super(name, email);
         this.studentID = studentID;
         this.GPA = 0;
+        this.department = department;
         this.courseGrades = new HashMap<>();
     }
 
     public String getStudentID() {
+
         return studentID;
     }
 
     public double getGPA() {
+
         return GPA;
     }
 
     public void setGPA(double GPA) {
+
         this.GPA = GPA;
+    }
+
+    public String getDepartment() {
+
+        return department;
+    }
+
+    public Map<Course, Double> getCourseGrade() {
+
+        return courseGrades;
     }
 
     public void addCourseGrade(Course course, double grade) {
@@ -46,15 +61,17 @@ public class Student extends Person{
 
     @Override
     public String getRole() {
+
         return "Student";
     }
 
     @Override
     public String toString() {
+
         return super.toString() + "ID: " + studentID;
     }
 
-    public void add(Student student) {
-        student.add(student);
-    }
+//    public void add(Student student) {
+//        student.add(student);
+//    }
 }
