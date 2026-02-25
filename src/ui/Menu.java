@@ -78,12 +78,20 @@ public class Menu {
         System.out.print("  Student ID    : ");
         String id = scanner.nextLine().trim();
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("GPA: ");
-        double gpa = scanner.nextDouble();
+        // ✅ Use the class-level scanner and parse as a String → double
+        double gpa = 0;
+        while (true) {
+            System.out.print("  GPA           : ");
+            try {
+                gpa = Double.parseDouble(scanner.nextLine().trim());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("  Invalid GPA. Please enter a number (e.g. 3.75).");
+            }
+        }
 
         System.out.print("  Department    : ");
-        String dept= scanner.nextLine().trim();
+        String dept = scanner.nextLine().trim();  // ✅ No longer skipped
 
         Student student;
         if (type.equals("2")) {
