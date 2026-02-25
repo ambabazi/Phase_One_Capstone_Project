@@ -29,11 +29,6 @@ public abstract class Student extends Person{
         return GPA;
     }
 
-    public void setGPA(double GPA) {
-
-        this.GPA = GPA;
-    }
-
     public String getDepartment() {
 
         return department;
