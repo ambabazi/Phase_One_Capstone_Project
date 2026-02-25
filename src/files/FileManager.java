@@ -15,9 +15,9 @@ public class FileManager {
     private static final String COURSES_FILE  = "courses.csv";
 
     public void saveStudents(List<Student> students) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(STUDENTS_FILE))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(STUDENTS_FILE))) {
             for (Student student : students) {
-                writer.println(
+                writer.write(
                         student.getClass().getSimpleName() + "," +
                                 student.getName()       + "," +
                                 student.getEmail()      + "," +
@@ -25,6 +25,7 @@ public class FileManager {
                                 student.getGPA()        + "," +
                                 student.getDepartment()
                 );
+                writer.newLine();
             }
             System.out.println("Students saved successfully → " + STUDENTS_FILE);
         } catch (IOException e) {
@@ -33,14 +34,15 @@ public class FileManager {
     }
 
     public void saveCourses(List<Course> courses) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(COURSES_FILE))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(COURSES_FILE))) {
             for (Course course : courses) {
-                writer.println(
+                writer.write(
                         course.getCourseID()    + "," +
                                 course.getCourseName()  + "," +
                                 course.getCredits()     + "," +
                                 course.getMaxCapacity()
                 );
+                writer.newLine();
             }
             System.out.println("Courses saved successfully → " + COURSES_FILE);
         } catch (IOException e) {

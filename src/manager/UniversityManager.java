@@ -72,28 +72,6 @@ public class UniversityManager {
         targetStudent.addCourseGrade(targetCourse, 0.0);
     }
 
-    public double getAverageGPAByDepartment(String department) {
-        double total = 0.0;
-        int count = 0;
-        for (Student s : students) {
-            if (s.getDepartment().equalsIgnoreCase(department)) {
-                total += s.getGPA();
-                count++;
-            }
-        }
-        return count == 0 ? 0.0 : total / count;
-    }
-
-    public Student getTopPerformingStudent() {
-        Student top = null;
-        for (Student s : students) {
-            if (top == null || s.getGPA() > top.getGPA()) {
-                top = s;
-            }
-        }
-        return top;
-    }
-
     public List<Student> getDeansList() {
         List<Student> deansList = new ArrayList<>();
         for (Student s : students) {
