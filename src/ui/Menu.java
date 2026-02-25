@@ -10,6 +10,7 @@ import model.Student;
 import model.Undergraduate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
@@ -25,7 +26,7 @@ public class Menu {
     }
 
     public void start() {
-        System.out.println("║ UNIVERSITY MANAGEMENT SYSTEM ║");
+        System.out.println("UNIVERSITY MANAGEMENT SYSTEM");
 
         while (true) {
             printMenu();
@@ -38,60 +39,53 @@ public class Menu {
                 case "3" -> handleEnrollStudent();
                 case "4" -> handleViewStudentRecord();
                 case "5" -> handleDeansList();
-                case "6" -> handleAverageGPAByDepartment();
-                case "7" -> handleTopStudent();
-                case "8" -> {
-                    handleSaveAndExit();
+                case "6" -> {handleSaveAndExit();
                     return;
                 }
-                default -> System.out.println("Invalid choice. Please enter a number from 1 to 8.");
+                default -> System.out.println("Invalid choice. Please enter a number from 1 to 7.");
             }
         }
     }
 
     private void printMenu() {
-        System.out.println("│               MAIN MENU             │");
-        System.out.println("│  1. Register Student                │");
-        System.out.println("│  2. Create Course                   │");
-        System.out.println("│  3. Enroll Student in Course        │");
-        System.out.println("│  4. View Student Record             │");
-        System.out.println("│  5. Generate Dean's List (GPA>3.5)  │");
-        System.out.println("│  6. Average GPA by Department       │");
-        System.out.println("│  7. Top Performing Student          │");
-        System.out.println("│  8. Save and Exit                   │");
-
-        System.out.print("  Your choice: ");
+        System.out.println("MAIN MENU");
+        System.out.println("1. Register Student");
+        System.out.println("2. Create Course");
+        System.out.println("3. Enroll Student in Course");
+        System.out.println("4. View Student Record");
+        System.out.println("5. Generate Dean's List (GPA > 3.5)");
+        System.out.println("6. Save and Exit");
+        System.out.print("Your choice: ");
     }
 
     private void handleRegisterStudent() {
-        System.out.println(" REGISTER NEW STUDENT ");
+        System.out.println("REGISTER NEW STUDENT");
 
-        System.out.print("  Student type  (1 = Undergraduate  /  2 = Graduate): ");
+        System.out.print("Student type (1 = Undergraduate / 2 = Graduate): ");
         String type = scanner.nextLine().trim();
 
-        System.out.print("  Full name     : ");
+        System.out.print("Full name: ");
         String name = scanner.nextLine().trim();
 
-        System.out.print("  Email         : ");
+        System.out.print("Email: ");
         String email = scanner.nextLine().trim();
 
-        System.out.print("  Student ID    : ");
+        System.out.print("Student ID: ");
         String id = scanner.nextLine().trim();
 
-        // ✅ Use the class-level scanner and parse as a String → double
         double gpa = 0;
         while (true) {
-            System.out.print("  GPA           : ");
+            System.out.print("GPA: ");
             try {
                 gpa = Double.parseDouble(scanner.nextLine().trim());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("  Invalid GPA. Please enter a number (e.g. 3.75).");
+                System.out.println("Invalid GPA. Please enter a number (e.g. 3.75).");
             }
         }
 
-        System.out.print("  Department    : ");
-        String dept = scanner.nextLine().trim();  // ✅ No longer skipped
+        System.out.print("Department: ");
+        String dept = scanner.nextLine().trim();
 
         Student student;
         if (type.equals("2")) {
@@ -101,156 +95,123 @@ public class Menu {
         }
 
         String result = manager.registerStudent(student);
-        System.out.println("\n  " + result);
+        System.out.println("\n" + result);
     }
 
     private void handleCreateCourse() {
-        System.out.println("── CREATE NEW COURSE ─────────────────────");
+        System.out.println("CREATE NEW COURSE");
 
-        System.out.print("  Course ID       : ");
+        System.out.print("Course ID: ");
         String id = scanner.nextLine().trim();
 
-        System.out.print("  Course name     : ");
+        System.out.print("Course name: ");
         String name = scanner.nextLine().trim();
 
-        int credits  = readInt("  Credits         : ");
-        int capacity = readInt("  Max capacity    : ");
+        int credits  = readInt("Credits: ");
+        int capacity = readInt("Max capacity: ");
 
         String result = manager.createCourse(new Course(id, name, credits, capacity));
-        System.out.println("\n  " + result);
+        System.out.println("\n" + result);
     }
 
     private void handleEnrollStudent() {
-        System.out.println("── ENROLL STUDENT IN COURSE ──────────────");
+        System.out.println("ENROLL STUDENT IN COURSE");
 
-        System.out.print("  Student ID : ");
+        System.out.print("Student ID: ");
         String studentID = scanner.nextLine().trim();
 
-        System.out.print("  Course ID  : ");
+        System.out.print("Course ID: ");
         String courseID = scanner.nextLine().trim();
 
         try {
             manager.enrollStudentInCourse(studentID, courseID);
-            System.out.println("\n  Enrollment successful!");
+            System.out.println("\nEnrollment successful!");
 
         } catch (CourseIsFull e) {
-            System.out.println("\n  ENROLLMENT FAILED — Course is full!");
-            System.out.println("  Reason: " + e.getMessage());
+            System.out.println("\nENROLLMENT FAILED - Course is full!");
+            System.out.println("Reason: " + e.getMessage());
 
         } catch (StudentEnrolled e) {
-            System.out.println("\n  ENROLLMENT FAILED — Student already enrolled!");
-            System.out.println("  Reason: " + e.getMessage());
+            System.out.println("\nENROLLMENT FAILED - Student already enrolled!");
+            System.out.println("Reason: " + e.getMessage());
 
         } catch (IllegalArgumentException e) {
-            System.out.println("\n  ENROLLMENT FAILED — " + e.getMessage());
+            System.out.println("\nENROLLMENT FAILED - " + e.getMessage());
         }
     }
 
     private void handleViewStudentRecord() {
-        System.out.println("── VIEW STUDENT RECORD ───────────────────");
+        System.out.println("VIEW STUDENT RECORD");
 
-        System.out.print("  Enter Student ID: ");
+        System.out.print("Enter Student ID: ");
         String id = scanner.nextLine().trim();
 
         Student s = manager.findStudent(id);
 
         if (s == null) {
-            System.out.println("\n  No student found with ID: " + id);
+            System.out.println("\nNo student found with ID: " + id);
             return;
         }
 
-        System.out.println("\n  ╔══════════════════════════════════════╗");
-        System.out.println("  ║           STUDENT RECORD             ║");
-        System.out.println("  ╠══════════════════════════════════════╣");
-        System.out.printf("  ║  Name       : %-22s║%n", s.getName());
-        System.out.printf("  ║  Student ID : %-22s║%n", s.getStudentID());
-        System.out.printf("  ║  Type       : %-22s║%n", s.getRole());
-        System.out.printf("  ║  Department : %-22s║%n", s.getDepartment());
-        System.out.printf("  ║  Email      : %-22s║%n", s.getEmail());
-        System.out.printf("  ║  GPA        : %-22.2f║%n", s.getGPA());
-        System.out.printf("  ║  Tuition    : %-22s║%n", formatMoney(s.calculateTuition()));
-        System.out.println("  ╠══════════════════════════════════════╣");
-        System.out.println("  ║  ENROLLED COURSES                    ║");
-        System.out.println("  ╠══════════════════════════════════════╣");
+        System.out.println("\n  +--------------------------------------+");
+        System.out.println("  |           STUDENT RECORD             |");
+        System.out.println("  +--------------------------------------+");
+        System.out.println("  |  Name       : " + padRight(s.getName(), 22) + "|");
+        System.out.println("  |  Student ID : " + padRight(s.getStudentID(), 22) + "|");
+        System.out.println("  |  Type       : " + padRight(s.getRole(), 22) + "|");
+        System.out.println("  |  Department : " + padRight(s.getDepartment(), 22) + "|");
+        System.out.println("  |  Email      : " + padRight(s.getEmail(), 22) + "|");
+        System.out.println("  |  GPA        : " + padRight(String.format("%.2f", s.getGPA()), 22) + "|");
+        System.out.println("  |  Tuition    : " + padRight(formatMoney(s.calculateTuition()), 22) + "|");
+        System.out.println("  +--------------------------------------+");
+        System.out.println("  |  ENROLLED COURSES                    |");
+        System.out.println("  +--------------------------------------+");
 
         if (s.getCourseGrade().isEmpty()) {
-            System.out.println("  ║  (No courses enrolled yet)           ║");
+            System.out.println("  |  (No courses enrolled yet)           |");
         } else {
-            for (Course course : s.getCourseGrade().keySet()) {
-                double grade = s.getCourseGrade().get(course);
-                String gradeStr = (grade == 0.0) ? "Not graded" : String.format("%.1f", grade);
-                System.out.printf("  ║  %-20s Grade: %-5s ║%n",
-                        course.getCourseName(), gradeStr);
+            for (Map.Entry<Course, Double> entry : s.getCourseGrade().entrySet()) {
+                String courseName = entry.getKey().getCourseName();
+                double grade      = entry.getValue();
+                String gradeStr   = (grade == 0.0) ? "Not graded" : String.format("%.1f", grade);
+                System.out.printf("  |  %-20s Grade: %-5s |%n", courseName, gradeStr);
             }
         }
 
-        System.out.println("  ╚══════════════════════════════════════╝");
+        System.out.println("  +--------------------------------------+");
     }
 
     private void handleDeansList() {
-        System.out.println("── DEAN'S LIST (GPA > 3.5) ───────────────");
+        System.out.println("DEAN'S LIST (GPA > 3.5)");
 
         List<Student> deansList = manager.getDeansList();
 
         if (deansList.isEmpty()) {
-            System.out.println("  No students currently qualify for the Dean's List.");
+            System.out.println("No students currently qualify for the Dean's List.");
             return;
         }
 
-        System.out.println("\n  Students on the Dean's List:");
-        System.out.println("  ┌────────────────┬──────────────────────┬────────────┬───────┐");
-        System.out.println("  │ Student ID     │ Name                 │ Department │ GPA   │");
-        System.out.println("  ├────────────────┼──────────────────────┼────────────┼───────┤");
+        System.out.println("\nStudents on the Dean's List:");
+        System.out.println("+----------------+----------------------+------------+-------+");
+        System.out.println("| Student ID     | Name                 | Department | GPA   |");
+        System.out.println("+----------------+----------------------+------------+-------+");
 
         for (Student s : deansList) {
-            System.out.printf("  │ %-14s │ %-20s │ %-10s │ %-5.2f │%n",
-                    s.getStudentID(),
-                    s.getName(),
-                    s.getDepartment(),
-                    s.getGPA()
-            );
-        }
-        System.out.println("  └────────────────┴──────────────────────┴────────────┴───────┘");
-        System.out.println("  Total: " + deansList.size() + " student(s) on the Dean's List.");
-    }
-
-    private void handleAverageGPAByDepartment() {
-        System.out.println("── AVERAGE GPA BY DEPARTMENT ─────────────");
-
-        System.out.print("  Enter department name: ");
-        String dept = scanner.nextLine().trim();
-
-        double avg = manager.getAverageGPAByDepartment(dept);
-
-        if (avg == 0.0) {
-            System.out.println("\n  No students found in department: " + dept);
-        } else {
-            System.out.printf("%n  Average GPA for [%s]: %.2f%n", dept, avg);
-        }
-    }
-
-    private void handleTopStudent() {
-        System.out.println("── TOP PERFORMING STUDENT ────────────────");
-
-        Student s = manager.getTopPerformingStudent();
-
-        if (s == null) {
-            System.out.println("  No students in the system yet.");
-            return;
+            System.out.println("| " + padRight(s.getStudentID(), 14) + " | " +
+                    padRight(s.getName(), 20) + " | " +
+                    padRight(s.getDepartment(), 10) + " | " +
+                    padRight(String.format("%.2f", s.getGPA()), 5) + " |");
         }
 
-        System.out.println("\n  Top Performing Student:");
-        System.out.println("     Name       : " + s.getName());
-        System.out.println("     Student ID : " + s.getStudentID());
-        System.out.println("     Department : " + s.getDepartment());
-        System.out.printf("     GPA        : %.2f%n", s.getGPA());
+        System.out.println("+----------------+----------------------+------------+-------+");
+        System.out.println("Total: " + deansList.size() + " student(s) on the Dean's List.");
     }
 
     private void handleSaveAndExit() {
-        System.out.println("── SAVING DATA ───────────────────────────");
+        System.out.println("SAVING DATA");
         fileManager.saveStudents(manager.getStudents());
         fileManager.saveCourses(manager.getCourses());
-        System.out.println("\n  All data saved. See you next time!");
+        System.out.println("All data saved. See you next time!");
     }
 
     private int readInt(String prompt) {
@@ -259,11 +220,16 @@ public class Menu {
             try {
                 int value = Integer.parseInt(scanner.nextLine().trim());
                 if (value > 0) return value;
-                System.out.println("  Please enter a positive number.");
+                System.out.println("Please enter a positive number.");
             } catch (NumberFormatException e) {
-                System.out.println("  Invalid input. Please enter a whole number.");
+                System.out.println("Invalid input. Please enter a whole number.");
             }
         }
+    }
+
+    private String padRight(String text, int width) {
+        if (text.length() >= width) return text.substring(0, width);
+        return text + " ".repeat(width - text.length());
     }
 
     private String formatMoney(double amount) {

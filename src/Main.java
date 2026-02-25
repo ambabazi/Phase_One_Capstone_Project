@@ -7,9 +7,7 @@ public class Main {
         UniversityManager manager     = new UniversityManager();
         FileManager       fileManager = new FileManager();
 
-        System.out.println("╔══════════════════════════════════════════╗");
         System.out.println("║         Loading saved data...            ║");
-        System.out.println("╚══════════════════════════════════════════╝");
 
         fileManager.loadStudents(manager);
         fileManager.loadCourses(manager);
