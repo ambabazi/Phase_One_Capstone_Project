@@ -23,7 +23,7 @@ public class Instructor extends Person{
 
     @Override
     public String getRole() {
-        return "INSTRUCTOR";
+        return "Instructor";
 
 }
 }

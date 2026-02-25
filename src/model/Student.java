@@ -3,18 +3,18 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Student extends Person{
+public abstract class Student extends Person{
 
     private String studentID;
     private double GPA;
     private String department;
 
-    private Map<Course, Double> courseGrades = new HashMap<>();
+    private Map<Course, Double> courseGrades;
 
     public Student(String name, String email, String studentID, double GPA, String department) {
         super(name, email);
         this.studentID = studentID;
-        this.GPA = 0;
+        this.GPA = GPA;
         this.department = department;
         this.courseGrades = new HashMap<>();
     }
@@ -59,6 +59,8 @@ public class Student extends Person{
         this.GPA = total / courseGrades.size();
     }
 
+    public abstract double calculateTuition();
+
     @Override
     public String getRole() {
 
@@ -68,10 +70,6 @@ public class Student extends Person{
     @Override
     public String toString() {
 
-        return super.toString() + "ID: " + studentID;
+        return super.toString() + " | ID: " + studentID;
     }
-
-//    public void add(Student student) {
-//        student.add(student);
-//    }
 }

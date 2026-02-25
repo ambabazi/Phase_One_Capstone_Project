@@ -19,7 +19,7 @@ public abstract class Person {
         return email;
     }
 
-    public void SetName(String name) {
+    public void setName(String name) {
 
         this.name = name;
     }
@@ -33,6 +33,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return getRole() + ": " + name + "Email: " + email ;
+        return getRole() + ": " + name + " | Email: " + email ;
     }
 }

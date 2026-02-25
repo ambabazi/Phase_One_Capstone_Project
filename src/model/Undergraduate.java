@@ -2,15 +2,16 @@ package model;
 
 public class Undergraduate  extends Student{
 
-    private static final double flat_rate = 100000;
+    private static final double FLAT_RATE = 100000;
 
     public Undergraduate(String name, String email, String studentID, double GPA, String department) {
         super(name, email, studentID, GPA, department);
     }
 
+    @Override
     public double calculateTuition() {
 
-        return flat_rate;
+        return FLAT_RATE;
     }
 
     @Override
