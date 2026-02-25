@@ -48,12 +48,19 @@ public abstract class Student extends Person{
         if (courseGrades.isEmpty()) return;
 
         double total = 0;
-        for(double grade : courseGrades.values()) {
-            total += grade;
-        }
-        this.GPA = total / courseGrades.size();
-    }
+        int count = 0;
 
+        for (double grade : courseGrades.values()) {
+            if (grade > 0.0) {
+                total += grade;
+                count++;
+            }
+        }
+
+        if (count > 0) {
+            this.GPA = total / count;
+        }
+    }
     public abstract double calculateTuition();
 
     @Override
