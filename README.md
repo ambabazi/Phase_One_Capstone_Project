@@ -1,17 +1,16 @@
 # Phase_One_Capstone_Project
 
-## DESCRIPTION
+## University Management System
+
+### DESCRIPTION
 
 A Mini university system that will allow user to interact with the system through the menu, enroll student, track their grades, and also save the data into a file that acts as a database.
 
-
-# 🎓 University Management System
-
 A Java console application for managing students, courses, and enrollments at a university. Built with object-oriented principles including inheritance, abstraction, custom exceptions, and file persistence.
 
----
 
-## 📁 Project Structure
+
+###  Project Structure
 
 ```
 src/
@@ -36,7 +35,7 @@ src/
 
 ---
 
-## ✨ Features
+###  Features
 
 - **Register Students** — Add undergraduate or graduate students with name, email, ID, GPA, and department
 - **Create Courses** — Define courses with ID, name, credits, and max capacity
@@ -49,9 +48,9 @@ src/
 
 ---
 
-## 🏗️ OOP Design
+### OOP Design
 
-### Inheritance Hierarchy
+#### Inheritance Hierarchy
 
 ```
 Person (abstract)
@@ -61,7 +60,7 @@ Person (abstract)
 └── Instructor
 ```
 
-### Key Design Decisions
+#### Key Design Decisions
 
 | Concept | Implementation |
 |---|---|
@@ -70,21 +69,21 @@ Person (abstract)
 | Encapsulation | All fields are private with getters/setters |
 | Custom Exceptions | `CourseIsFull`, `StudentEnrolled` for meaningful error handling |
 
-### Tuition Calculation
+#### Tuition Calculation
 
 - **Undergraduate** — Flat rate of **100,000 RWF** regardless of courses
 - **Graduate** — **60,000 RWF per credit** + a fixed **50,000 RWF research fee**
 
 ---
 
-## 🚀 Getting Started
+### Getting Started
 
-### Prerequisites
+#### Prerequisites
 
 - Java 17 or higher
 - Any Java IDE (IntelliJ IDEA, Eclipse, VS Code) or the command line
 
-### Running the Application
+#### Running the Application
 
 **Via IDE:** Open the project, navigate to `Main.java`, and run it.
 
@@ -99,7 +98,7 @@ java -cp out Main
 
 ---
 
-## 💾 Data Persistence
+### Data Persistence
 
 On exit (option 8), data is saved to two CSV files in the project root:
 
@@ -122,7 +121,7 @@ MATH201,Linear Algebra,4,25
 
 ---
 
-## 🖥️ Menu Options
+### Menu Options
 
 ```
 │  1. Register Student                │
@@ -137,7 +136,7 @@ MATH201,Linear Algebra,4,25
 
 ---
 
-## ⚠️ Exception Handling
+### Exception Handling
 
 | Exception | Trigger |
 |---|---|
@@ -147,7 +146,7 @@ MATH201,Linear Algebra,4,25
 
 ---
 
-## 📝 Notes
+### Notes
 
 - GPA is automatically recalculated when a student receives a grade (grades of `0.0` are treated as "not yet graded" and excluded from GPA calculation)
 - Student IDs and Course IDs are **case-insensitive** for lookups
@@ -155,6 +154,8 @@ MATH201,Linear Algebra,4,25
 
 ---
 
-## 👤 Author
+### Author
 
+Agnes Mbabazi
+ambabazi00@gmail.com
 Built as a Java OOP project demonstrating real-world university management concepts.
