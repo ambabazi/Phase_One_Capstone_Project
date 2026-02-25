@@ -1,7 +1,5 @@
 package model;
 
-import jdk.jfr.DataAmount;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class Course {
         this.courseID = courseID;
         this.courseName = courseName;
         this.credits = credits;
-        this.maxCapacity = 60;
+        this.maxCapacity = maxCapacity;
         this.students =  new ArrayList<>();
     }
 
@@ -59,7 +57,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "CourseID: " +courseID + "Name of the Course:  " + courseName + "credits " + credits;
+        return "CourseID: " +courseID + " | Name of the Course:  " + courseName + " | credits " + credits;
     }
 
 }
