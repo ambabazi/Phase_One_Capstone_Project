@@ -82,19 +82,10 @@ public class UniversityManager {
         return deansList;
     }
 
-    public Student findStudent(String studentID) {
-        for (Student s : students) {
-            if (s.getStudentID().equalsIgnoreCase(studentID)) {
-                return s;
-            }
-        }
-        return null;
-    }
-
     public List<Student> getStudents() { return students; }
     public List<Course>  getCourses()  { return courses;  }
 
-    private Student findStudentByID(String studentID) {
+    public Student findStudentByID(String studentID) {
         for (Student s : students) {
             if (s.getStudentID().equalsIgnoreCase(studentID)) {
                 return s;
@@ -103,7 +94,7 @@ public class UniversityManager {
         return null;
     }
 
-    private Course findCourseByID(String courseID) {
+    public Course findCourseByID(String courseID) {
         for (Course c : courses) {
             if (c.getCourseID().equalsIgnoreCase(courseID)) {
                 return c;

@@ -146,7 +146,7 @@ public class Menu {
         System.out.print("Enter Student ID: ");
         String id = scanner.nextLine().trim();
 
-        Student s = manager.findStudent(id);
+        Student s = manager.findStudentByID(id);
 
         if (s == null) {
             System.out.println("\nNo student found with ID: " + id);
