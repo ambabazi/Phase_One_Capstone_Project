@@ -42,8 +42,6 @@ src/
 - **Enroll Students** — Enroll a student in a course with duplicate and capacity checks
 - **View Student Records** — Display full student profile including enrolled courses, grades, and tuition
 - **Dean's List** — Generate a list of all students with GPA above 3.5
-- **Average GPA by Department** — Calculate the average GPA for any department
-- **Top Performing Student** — Find the student with the highest GPA
 - **Save & Load Data** — Persist students and courses to CSV files (`students.csv`, `courses.csv`)
 
 ---
@@ -129,9 +127,7 @@ MATH201,Linear Algebra,4,25
 │  3. Enroll Student in Course        │
 │  4. View Student Record             │
 │  5. Generate Dean's List (GPA>3.5)  │
-│  6. Average GPA by Department       │
-│  7. Top Performing Student          │
-│  8. Save and Exit                   │
+│  6. Save and Exit                   │
 ```
 
 ---
